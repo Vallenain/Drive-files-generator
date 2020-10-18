@@ -42,13 +42,14 @@ def export_cred_to_file(creds_path, creds):
 
 def build_drive_service():
     global drive_service
-    if os.path.isfile(CONFIG["CREDS_PATH"]):
-        creds = make_creds_from_file(CONFIG["CREDS_PATH"])
+    if os.path.isfile(CONFIG.get('CREDS_PATH', '')):
+        creds = make_creds_from_file(CONFIG['CREDS_PATH'])
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
             CONFIG["CLIENT_SECRET_PATH"], scopes=CONFIG["SCOPES"]
         )
         creds = flow.run_console()
+    if CONFIG.get('CREDS_PATH'):
         export_cred_to_file(CONFIG["CREDS_PATH"], creds)
     drive_service = build("drive", "v3", credentials=creds, cache_discovery=False)
 
@@ -65,9 +66,10 @@ def create_file(parent_id, mime_type, name=None):
     body = {
         "name": name,
         "mimeType": mime_type,
-        "description": "File auto created by JsonToDrive tool",
-        "parents": [parent_id],
+        "description": "File auto created by Drive files generator tool"
     }
+    if parent_id != "my-drive":
+        body['parents'] = [parent_id]
     logging.info(
         "About to create a {} called {} in folder {}".format(mime_type, name, parent_id)
     )
