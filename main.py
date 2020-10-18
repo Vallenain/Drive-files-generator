@@ -175,7 +175,7 @@ if __name__ == "__main__":
     logging.info("Launching the tool!")
     build_drive_service()
     logging.info("Scopes have been authorized")
-    json_object = read_json(CONFIG["DRIVE_FILES_PATH"])
+    json_object = read_json(CONFIG["JSON_FILE_TREE_PATH"])
     logging.info("Json file has been read")
     logging.info("Recording time")
     start = timer()

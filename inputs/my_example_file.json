@@ -1,15 +1,13 @@
 {
-  "1yvYGGbINJvhp5r-7P6RlWRYOFXJWz2KN": {
+  "my-drive": {
+    "docs": ["My Google Docs"],
+    "sheets": 3,
     "folders": {
-      "ZORRA": {
+      "ZORRO": {
         "forms": 1,
+        "sites": ["Google Site #1", "Google Site #2"],
         "folders": {
-          "zizette": {
-            "docs": 2,
-            "sites": [
-              "toto"
-            ]
-          }
+          "my last folder": {}
         }
       }
     }
