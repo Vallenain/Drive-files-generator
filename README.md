@@ -2,7 +2,7 @@
 
 Tool to generate folders and documents on Google Drive from a JSON file.
 
-##JSON file tree
+## JSON file tree
 
 The JSON file describes the file tree you want to create on Google Drive.
 
@@ -40,7 +40,8 @@ and they will have a timestamp for name (`"docs": 3` will create 3 Google Docs) 
 5. If you want to create an empty folder, just add an entry with an empty dict (`"my last folder": {}`)
 
 6. Reference the path of the JSON file in `config.py`: 
-##Credentials
+
+## Credentials
 At the moment, the script is not packaged and it is not a published app either. So you have to create your own GCP Oauth
 client ID for installed app ([this procedure][1]).  
 Download the JSON file and reference its path into the `config.py` file: `CLIENT_SECRET_PATH`.
@@ -51,8 +52,9 @@ Otherwise it will ask your permission at each run.
 
 [1]: https://cloud.google.com/bigquery/docs/authentication/end-user-installed#client-credentials
 
-##Run the script
-To run the script, simply run (Python 3):  
-```python main.py```
+## Run and test the script
+To run the script, simply run (Python 3): ```python main.py```
+
+To test it, ```pytest```
 
 There is a lot to improve, I know... ;-)
