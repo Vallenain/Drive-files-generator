@@ -5,5 +5,5 @@ CONFIG = {
                'https://www.googleapis.com/auth/userinfo.profile',
                'https://www.googleapis.com/auth/drive',
                'openid'],
-    'DRIVE_FILES_PATH': 'inputs/my_example_file.json'
+    'JSON_FILE_TREE_PATH': 'inputs/my_example_file.json'
 }

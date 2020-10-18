@@ -1,9 +1,16 @@
 {
   "1yvYGGbINJvhp5r-7P6RlWRYOFXJWz2KN": {
-    "docs": ["00"],
     "folders": {
-      "ZORRO": {
-        "forms": 1
+      "ZORRA": {
+        "forms": 1,
+        "folders": {
+          "zizette": {
+            "docs": 2,
+            "sites": [
+              "toto"
+            ]
+          }
+        }
       }
     }
   }
