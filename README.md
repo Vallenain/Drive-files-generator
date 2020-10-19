@@ -26,7 +26,7 @@ An example will help you understand the structure of it.
 ```
 
 1. The outter object must have a single entry. The key is the ID of the folder where you want to create the file tree 
-or `my-drive` if you want it to be the root of your Drive. A shared drive ID can be passed too.
+or the special value `my-drive` if you want it to be the root of your Drive. A shared drive ID can be passed too.
 
 2. Inside a folder, you can specify the different Google Drive elements you want to create. Either documents from the
 the list, or the special "folders" entry if you want to create subfolders.
@@ -39,22 +39,35 @@ and they will have a timestamp for name (`"docs": 3` will create 3 Google Docs) 
 
 5. If you want to create an empty folder, just add an entry with an empty dict (`"my last folder": {}`)
 
-6. Reference the path of the JSON file in `config.py`: 
 
 ## Credentials
 At the moment, the script is not packaged and it is not a published app either. So you have to create your own GCP Oauth
 client ID for installed app ([this procedure][1]).  
-Download the JSON file and reference its path into the `config.py` file: `CLIENT_SECRET_PATH`.
+Download the JSON file and pass it to the command line.
 
 The script will ask for permission to write into your Google Drive. After the scope authorization process is done, it
-will save your refresh token + access token into a file if (and only if) a `CREDS_PATH` is specified in `config.py`.
+will save your refresh token + access token into a file if (and only if) you have passed `--store-creds` with a file
+path to the command line.
 Otherwise it will ask your permission at each run.
 
 [1]: https://cloud.google.com/bigquery/docs/authentication/end-user-installed#client-credentials
 
 ## Run and test the script
-To run the script, simply run (Python 3): ```python main.py```
+```
+usage: main.py [-h] [--store-creds STORE_CREDS] client_id_file json_file
 
-To test it, ```pytest```
+Generate Google Drive folders and documents from a JSON file.
+
+positional arguments:
+  client_id_file        the client id JSON file, downloaded from GCP
+  json_file             the Drive file tree, in JSON format
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --store-creds STORE_CREDS
+                        if you want to store your creds (refresh + access token) on your filesystem, give it a file path
+```
+
+To test it, run `pytest`
 
 There is a lot to improve, I know... ;-)

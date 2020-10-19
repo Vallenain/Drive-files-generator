@@ -3,6 +3,7 @@ import logging
 import json
 from timeit import default_timer as timer
 import os
+from argparse import ArgumentParser
 
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
@@ -40,17 +41,17 @@ def export_cred_to_file(creds_path, creds):
         file.write(json_creds)
 
 
-def build_drive_service():
+def build_drive_service(client_id_file_path, creds_path=None):
     global drive_service
-    if os.path.isfile(CONFIG.get('CREDS_PATH', '')):
-        creds = make_creds_from_file(CONFIG['CREDS_PATH'])
+    if os.path.isfile(creds_path):
+        creds = make_creds_from_file(creds_path)
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
-            CONFIG["CLIENT_SECRET_PATH"], scopes=CONFIG["SCOPES"]
+            client_id_file_path, scopes=CONFIG["SCOPES"]
         )
         creds = flow.run_console()
-    if CONFIG.get('CREDS_PATH'):
-        export_cred_to_file(CONFIG["CREDS_PATH"], creds)
+    if creds_path:
+        export_cred_to_file(creds_path, creds)
     drive_service = build("drive", "v3", credentials=creds, cache_discovery=False)
 
 
@@ -172,10 +173,20 @@ def create_drive_files(json_file_tree):
 
 
 if __name__ == "__main__":
-    logging.info("Launching the tool!")
-    build_drive_service()
+    parser = ArgumentParser(description='Generate Google Drive folders and documents from a JSON file.')
+    parser.add_argument('client_id_file', help='the client id JSON file, downloaded from GCP')
+    parser.add_argument('json_file', help='the Drive file tree, in JSON format')
+    parser.add_argument('--store-creds', help='if you want to store your creds (refresh + access token) on your '
+                                              'filesystem, give it a file path')
+    args = parser.parse_args()
+
+    if args.store_creds:
+        build_drive_service(args.client_id_file, creds_path=args.store_creds)
+    else:
+        build_drive_service(args.client_id_file)
+
     logging.info("Scopes have been authorized")
-    json_object = read_json(CONFIG["JSON_FILE_TREE_PATH"])
+    json_object = read_json(args.json_file)
     logging.info("Json file has been read")
     logging.info("Recording time")
     start = timer()

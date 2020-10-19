@@ -56,4 +56,6 @@ dist/
 logs/app_logs.log
 csv_examples/*.
 
-credentials/*.json
+credentials/
+
+.gitconfig
