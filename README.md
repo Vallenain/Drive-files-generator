@@ -40,6 +40,22 @@ or you can specify a list of names (`"docs": ["one", "two", "three"]`).
 
 5. If you want to create an empty folder, just add an entry with an empty dict (`"my last folder": {}`)
 
+## Types of Google Drive files
+
+Here are the types of files you can create. The left-hand side is what you put in your JSON file,
+the right-hand side is the corresponding mime type in Google Drive.
+
+```json
+{
+    "docs": "application/vnd.google-apps.document",
+    "drawings": "application/vnd.google-apps.drawing",
+    "forms": "application/vnd.google-apps.form",
+    "slides": "application/vnd.google-apps.presentation",
+    "scripts": "application/vnd.google-apps.script",
+    "sites": "application/vnd.google-apps.site",
+    "sheets": "application/vnd.google-apps.spreadsheet",
+}
+```
 
 ## Credentials
 At the moment, the script is not packaged nor published as an app. So you have to create your own GCP Oauth

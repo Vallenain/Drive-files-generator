@@ -9,11 +9,22 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 
-from config import CONFIG
-from drive_mime_types import DRIVE_MIME_TYPES
-
 logging.getLogger().setLevel(logging.INFO)
 
+SCOPES = ['https://www.googleapis.com/auth/userinfo.email',
+          'https://www.googleapis.com/auth/userinfo.profile',
+          'https://www.googleapis.com/auth/drive',
+          'openid']
+
+DRIVE_MIME_TYPES = {
+    "docs": "application/vnd.google-apps.document",
+    "drawings": "application/vnd.google-apps.drawing",
+    "forms": "application/vnd.google-apps.form",
+    "slides": "application/vnd.google-apps.presentation",
+    "scripts": "application/vnd.google-apps.script",
+    "sites": "application/vnd.google-apps.site",
+    "sheets": "application/vnd.google-apps.spreadsheet",
+}
 
 drive_service = None
 
@@ -47,7 +58,7 @@ def build_drive_service(client_id_file_path, creds_path=None):
         creds = make_creds_from_file(creds_path)
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
-            client_id_file_path, scopes=CONFIG["SCOPES"]
+            client_id_file_path, scopes=SCOPES
         )
         creds = flow.run_console()
     if creds_path:

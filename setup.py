@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="drive-files-gen",
-    version="0.0.2",
+    version="0.0.4",
     author="Val Le Nain",
     author_email="vallenain@gmail.com",
     description="Tool to generate files on Google Drive from a JSON file",
@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/Vallenain/Drive-files-generator",
     tests_require=["pytest"],
-    py_modules=["drive_files_gen"],
+    py_modules=["drive_files_gen", "drive_mime_typ"],
     keywords="google-drive JSON automation",
     classifiers=[
         "Programming Language :: Python :: 3",
