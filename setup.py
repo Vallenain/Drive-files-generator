@@ -21,5 +21,11 @@ setuptools.setup(
         "Operating System :: OS Independent",
         "Topic :: Utilities"
     ],
+    install_requires=[
+        "google-auth",
+        "google-auth-oauthlib",
+        "google-api-python-client",
+
+    ],
     python_requires='>=3.6',
 )

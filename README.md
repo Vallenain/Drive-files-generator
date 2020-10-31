@@ -55,7 +55,7 @@ Otherwise it will ask your permission at each run.
 
 ## Run the script
 ```
-usage: main.py [-h] [--store-creds STORE_CREDS] client_id_file json_file
+usage: drive_files_gen.py [-h] [--store-creds STORE_CREDS] client_id_file json_file
 
 Generate Google Drive folders and documents from a JSON file.
 
