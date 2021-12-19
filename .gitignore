@@ -141,3 +141,4 @@ credentials/
 .gitconfig
 test_config.py
 .idea
+/libs

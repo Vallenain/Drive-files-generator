@@ -60,7 +60,9 @@ the right-hand side is the corresponding mime type in Google Drive.
 ## Credentials
 At the moment, the script is not packaged nor published as an app. So you have to create your own GCP Oauth
 client ID for installed app ([this procedure][1]).  
-Download the JSON file and pass it to the command line.
+Download the JSON file and pass it to the command line.  
+
+You also have to activate the [Drive API][2] in your GCP project.
 
 The script will ask for permission to write in Google Drive. After the scope authorization process is done, it
 will save your refresh token + access token into a file if (and only if) you have passed `--store-creds` with a file
@@ -68,6 +70,7 @@ path to the command line.
 Otherwise it will ask your permission at each run.
 
 [1]: https://cloud.google.com/bigquery/docs/authentication/end-user-installed#client-credentials
+[2]: https://console.cloud.google.com/apis/library/drive.googleapis.com/
 
 ## Run the script
 ```

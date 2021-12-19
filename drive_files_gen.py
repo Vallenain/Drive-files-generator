@@ -163,12 +163,13 @@ def process_level(parent_folder_id, json_file_tree_level):
 
     if folders is not None:
         if isinstance(folders, dict):
-            for folder in folders:
-                logging.info(
-                    "{} folders to be created under {}".format(
-                        len(folders), parent_folder_id
-                    )
+            logging.info(
+                "{} named folders to be created under {}".format(
+                    len(folders),
+                    parent_folder_id
                 )
+            )
+            for folder in folders:
                 logging.info(
                     "Creating folder {} under {}".format(folder,
                                                          parent_folder_id)
@@ -182,8 +183,27 @@ def process_level(parent_folder_id, json_file_tree_level):
                     )
                 )
                 process_level(folder_id, folders.get(folder))
+        elif isinstance(folders, list):
+            logging.info(
+                "{} unnamed folders to be created under {}".format(
+                    len(folders),
+                    parent_folder_id
+                )
+            )
+            for folder in folders:
+                logging.info(
+                    "Creating an unnamed folder under {}".format(parent_folder_id)
+                )
+                folder_id = create_file(parent_folder_id,
+                                        "application/vnd.google-apps.folder")
+                logging.info(
+                    "An unnamed folder has been created under {} with id {}".format(
+                        parent_folder_id, folder_id
+                    )
+                )
+                process_level(folder_id, folder)
         else:
-            raise JSONTreeError("Dict expected for folders")
+            raise JSONTreeError("Dict or List expected for folders")
 
 
 def create_drive_files(json_file_tree):
