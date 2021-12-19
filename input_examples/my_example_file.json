@@ -1,15 +1,21 @@
 {
-  "my-drive": {
-    "docs": ["My Google Docs"],
-    "sheets": 3,
-    "folders": {
-      "ZORRO": {
-        "forms": 1,
-        "sites": ["Google Site #1", "Google Site #2"],
-        "folders": {
-          "my last folder": {}
-        }
-      }
-    }
-  }
+	"my-drive": {
+		"docs": ["My Google Docs"],
+		"sheets": 3,
+		"folders": {
+			"ZORRO": {
+				"forms": 1,
+				"sites": ["Google Site #1", "Google Site #2"],
+				"folders": {
+					"Home for unnamed folders": {
+						"folders": [{
+							"slides": ["Awesome slides"]
+						}, {
+							"docs": 1
+						}]
+					}
+				}
+			}
+		}
+	}
 }
