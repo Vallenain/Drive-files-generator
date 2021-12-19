@@ -16,9 +16,15 @@ An example will help you understand the structure of it.
       "ZORRO": {
         "forms": 1,
         "sites": ["Google Site #1", "Google Site #2"],
-        "folders": {
-          "my last folder": {}
-        }   
+        "folders": [{
+          "slides": ["Awesome slides"]
+        }, {
+          "docs": 1
+        }, {
+          "folders": {
+            "An empty folder": {}
+          }
+        }]  
       }
     }
   }
@@ -29,16 +35,17 @@ An example will help you understand the structure of it.
 or the special value `my-drive` if you want it to be the root of your Drive. A shared drive ID can be passed too.
 
 2. Inside a folder, you can specify the different Google Drive elements you want to create. Either documents from the
-the list, or the special "folders" entry if you want to create subfolders.
+the list, or the special keyword "folders" if you want to create subfolders.
 
-3. A folder is identified by its name (= JSON key). Exception for the root element which is `my-drive` or an existing 
-Google Drive ID.
+3. A folder can be identified by its name (= JSON key, e.g. folder "ZORRO" in the example) or you can define the 
+   subfolders as a list and the script will find a name for them. Exception for the root element which has to be
+   `my-drive` or an existing Google Drive folder ID (shared drives are supported).
 
 4. To specify which Google Docs, Sheets, Sites (and so on) you want to create, you can either tell how many you want 
 and they will have a timestamp for name (`"docs": 3` will create 3 Google Docs - not possible for folders at the moment) 
 or you can specify a list of names (`"docs": ["one", "two", "three"]`).
 
-5. If you want to create an empty folder, just add an entry with an empty dict (`"my last folder": {}`)
+5. If you want to create an empty folder, just add an entry with an empty dict (`"An empty folder": {}`)
 
 ## Types of Google Drive files
 
